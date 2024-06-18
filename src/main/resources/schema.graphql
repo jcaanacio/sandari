@@ -1,0 +1,27 @@
+type Query {
+  hello(id: Int!): String
+  getUser(userId: Int!): User
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+}
+
+type User {
+  userId: Int!
+  username: String!
+  userRole: UserRole!
+  createdAt: String!
+  updatedAt: String!
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  EMPLOYEE
+}
