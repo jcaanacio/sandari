@@ -45,7 +45,7 @@ public class GraphQLConfig {
                         .dataFetcher("hello", environment -> myGraphQLResolver.hello(environment.getArgument("userId")))
                         .dataFetcher("getUser", environment -> myGraphQLResolver.getUser(environment.getArgument("userId"))))
                 .type("Mutation", builder -> builder
-                        .dataFetcher("createUser", environment -> myGraphQLResolver.createUser(environment.getArgument("input"))))
+                        .dataFetcher("createUser", environment -> myGraphQLResolver.createUser(environment.getArgument("username"), environment.getArgument("password"))))
                 .build();
     }
 }
