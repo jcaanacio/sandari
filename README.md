@@ -194,13 +194,55 @@ _For more examples, please refer to the [Documentation](https://github.com/jcaan
 
 ![ERD](https://github.com/jcaanacio/teami/blob/main/public/erd.JPG)
 
-## Project Architecture
+## Project Overview
 
-![Project Architecture](https://github.com/jcaanacio/teami/blob/main/public/roadmap.png)
+![Project Overview](https://github.com/jcaanacio/teami/blob/main/public/roadmap.png)
 
 See the [open issues](https://github.com/jcaanacio/teami/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Project Structure -->
+## Project Structure
+```sh
+src/
+├── main/
+│   ├── java/
+│   │   ├── com/
+│   │   │   ├── example/
+│   │   │   │   ├── application/
+│   │   │   │   │   ├── usecases/
+│   │   │   │   │   │   ├── CreateUser.java
+│   │   │   │   │   │   ├── GetUserById.java
+│   │   │   │   │   │   ├── GetUserList.java
+│   │   │   │   │   │   ├── UpdateUser.java
+│   │   │   │   │   │   └── DeleteUser.java
+│   │   │   │   │   └── interfaces/
+│   │   │   │   │       └── UserRepository.java
+│   │   │   │   ├── domain/
+│   │   │   │   │   └── entities/
+│   │   │   │   │       └── User.java
+│   │   │   │   ├── infrastructure/
+│   │   │   │   │   ├── repositories/
+│   │   │   │   │   │   └── MongoUserRepository.java
+│   │   │   │   │   └── config/
+│   │   │   │   │       └── MongoConfig.java
+│   │   │   │   └── presentation/
+│   │   │   │       ├── controllers/
+│   │   │   │       │   └── UserController.java
+│   │   │   │       └── routes/
+│   │   │   │           └── UserRoutes.java
+│   │   │   └── Application.java
+│   └── resources/
+│       └── application.properties
+└── test/
+    └── java/
+        └── com/
+            └── example/
+                └── ApplicationTests.java
+```
+
+
 
 <!-- CONTRIBUTING -->
 

@@ -1,4 +1,4 @@
-package com.sandari.rain.libraries.handlers;
+package com.sandari.rain.presentation.utils.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
