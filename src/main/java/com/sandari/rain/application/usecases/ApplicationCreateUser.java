@@ -1,5 +1,7 @@
 package com.sandari.rain.application.usecases;
 
+import java.util.Optional;
+
 import com.sandari.rain.application.components.ApplicationException;
 import com.sandari.rain.application.interfaces.IApplicationPasswordEncryption;
 import com.sandari.rain.application.interfaces.IApplicationUserRepository;
@@ -16,6 +18,12 @@ public class ApplicationCreateUser {
     }
 
     public void execute(IDomainUser user) throws ApplicationException, DomainException {
+        Optional<IDomainUser> fetchedUser = this.userRepository.getUserByUsername(user.getUsername());
+
+        if(fetchedUser == null) {
+            throw new ApplicationException("Username is used already", 400, true);
+        }
+
         user.setPassword(passwordEncryption.encode(user.getPassword()));
         this.userRepository.createUser(user);
     }

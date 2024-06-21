@@ -37,7 +37,7 @@ public class DomainUser implements IDomainUser {
     public void setId(Long id) throws DomainException {
 
         if(id == null) {
-            throw new DomainException("Required field id");
+            throw new DomainException("Required field id", 400);
         }
 
         this.id = id;
@@ -52,7 +52,7 @@ public class DomainUser implements IDomainUser {
     public void setUsername(String username) throws DomainException {
 
         if(username == null) {
-            throw new DomainException("Required field username");
+            throw new DomainException("Required field username", 400);
         }
 
         this.username = username;
@@ -66,7 +66,7 @@ public class DomainUser implements IDomainUser {
     @Override
     public void setPassword(String password) throws DomainException {
         if(password == null) {
-            throw new DomainException("Required field password");
+            throw new DomainException("Required field password", 400);
         }
 
         this.password = password;
@@ -80,7 +80,7 @@ public class DomainUser implements IDomainUser {
     @Override
     public void setUserRole(DomainUserRole role) throws DomainException {
         if(role == null) {
-            throw new DomainException("Required field user role");
+            throw new DomainException("Required field user role", 400);
         }
 
         this.userRole = role;
@@ -94,7 +94,7 @@ public class DomainUser implements IDomainUser {
     @Override
     public void setCreatedAt(Instant createdAt) throws DomainException {
         if(createdAt == null) {
-            throw new DomainException("Required field created at");
+            throw new DomainException("Required field created at", 400);
         }
 
         this.createdAt = createdAt;
@@ -108,7 +108,7 @@ public class DomainUser implements IDomainUser {
     @Override
     public void setUpdatedAt(Instant updatedAt) throws DomainException {
         if(updatedAt == null) {
-            throw new DomainException("Required field updated at");
+            throw new DomainException("Required field updated at", 400);
         }
 
         this.updatedAt = updatedAt;

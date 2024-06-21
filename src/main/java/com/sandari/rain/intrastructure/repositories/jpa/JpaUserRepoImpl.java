@@ -36,5 +36,10 @@ public class JpaUserRepoImpl implements IApplicationUserRepository {
     public void deleteUser(Long id) throws ApplicationException {
         this.jpaUserRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<IDomainUser> getUserByUsername(String username) {
+        return this.jpaUserRepository.findByUsername(username);
+    }
     
 }

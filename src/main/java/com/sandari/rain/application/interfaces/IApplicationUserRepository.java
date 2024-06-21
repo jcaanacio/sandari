@@ -8,6 +8,7 @@ import com.sandari.rain.domain.interfaces.IDomainUser;
 
 public interface IApplicationUserRepository {
     Optional<IDomainUser> getUserById(Long id);
+    Optional<IDomainUser> getUserByUsername(String username);
     List<IDomainUser> getUserList();
     void createUser(IDomainUser user) throws ApplicationException;
     void updateUser(Long id, IDomainUser updateInput) throws ApplicationException;

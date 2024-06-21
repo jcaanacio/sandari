@@ -21,7 +21,7 @@ public class DomainUserCredential implements IDomainUserCredential {
     public void setUsername(String username) throws DomainException {
 
         if(username == null) {
-            throw new DomainException(this.generateRequiredErrorMessage("username"));
+            throw new DomainException(this.generateRequiredErrorMessage("username"), 400);
         }
 
         this.username = username;
@@ -35,7 +35,7 @@ public class DomainUserCredential implements IDomainUserCredential {
     @Override
     public void setPassword(String password) throws DomainException {
         if(password == null) {
-            throw new DomainException(this.generateRequiredErrorMessage("password"));
+            throw new DomainException(this.generateRequiredErrorMessage("password"), 400);
         }
 
         this.password = password;

@@ -10,8 +10,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.sandari.rain.domain.entities.DomainUserCredential;
 import com.sandari.rain.domain.interfaces.IDomainUserCredential;
-import com.sandari.rain.libraries.exceptions.RestException;
-import com.sandari.rain.libraries.typings.enums.ErrorScope;
+import com.sandari.rain.presentation.exceptions.RestException;
+import com.sandari.rain.presentation.types.enums.RestErrorScope;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 @Aspect
@@ -24,18 +25,28 @@ public class BasicAuthAspect {
 
 
         if (requestAttributes == null) {
-            throw new RestException("Could not retrieve HTTP request", 400, ErrorScope.CLIENT);
+            throw new RestException("Could not retrieve HTTP request", 400, RestErrorScope.CLIENT);
         }
 
         HttpServletRequest request = requestAttributes.getRequest();
         String authorizationHeader = request.getHeader("Authorization");
 
         if (authorizationHeader == null || !authorizationHeader.startsWith("Basic ")) {
-            throw new RestException("Basic token is missing or invalid", 401, ErrorScope.CLIENT);
+            throw new RestException("Basic token is missing or invalid", 401, RestErrorScope.CLIENT);
         }
+
 
         String username = getUsernameFromAuthorization(authorizationHeader);
         String password = getPasswordFromAuthorization(authorizationHeader);
+
+        if (username == null) {
+            throw new RestException("Username required", 400, RestErrorScope.CLIENT);
+        }
+
+        if (password == null) {
+            throw new RestException("Passowrd required", 400, RestErrorScope.CLIENT);
+        }
+
         IDomainUserCredential domainUserCredentials = new DomainUserCredential(username, password);
 
         request.setAttribute("userCredentials", domainUserCredentials);

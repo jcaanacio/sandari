@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import com.sandari.rain.libraries.adapters.Env;
-import com.sandari.rain.libraries.typings.interfaces.IEnv;
+import com.sandari.rain.configurations.Env;
+import com.sandari.rain.configurations.intefaces.IEnv;
 
 @SpringBootApplication
 public class RainApplication {
@@ -18,7 +18,7 @@ public class RainApplication {
 
 			SpringApplication.run(RainApplication.class, args);
         } catch (Exception e) {
-            e.printStackTrace(); // Print the full stack trace
+            e.printStackTrace();
         }
 	}
 

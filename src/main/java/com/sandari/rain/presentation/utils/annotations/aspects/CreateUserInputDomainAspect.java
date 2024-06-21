@@ -11,8 +11,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.sandari.rain.domain.entities.DomainUser;
 import com.sandari.rain.domain.enums.DomainUserRole;
-import com.sandari.rain.libraries.exceptions.RestException;
-import com.sandari.rain.libraries.typings.enums.ErrorScope;
+import com.sandari.rain.presentation.exceptions.RestException;
+import com.sandari.rain.presentation.types.enums.RestErrorScope;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Aspect
@@ -25,14 +25,14 @@ public class CreateUserInputDomainAspect {
 
 
         if (requestAttributes == null) {
-            throw new RestException("Could not retrieve HTTP request", 400, ErrorScope.CLIENT);
+            throw new RestException("Could not retrieve HTTP request", 400, RestErrorScope.CLIENT);
         }
 
         HttpServletRequest request = requestAttributes.getRequest();
         String authorizationHeader = request.getHeader("Authorization");
 
         if (authorizationHeader == null || !authorizationHeader.startsWith("Basic ")) {
-            throw new RestException("Basic token is missing or invalid", 401, ErrorScope.CLIENT);
+            throw new RestException("Basic token is missing or invalid", 401, RestErrorScope.CLIENT);
         }
 
 
@@ -40,7 +40,7 @@ public class CreateUserInputDomainAspect {
         String password = getPasswordFromAuthorization(authorizationHeader);
 
         if(username == null || password == null) {
-            throw new RestException("Username and Password is required", 401, ErrorScope.CLIENT);
+            throw new RestException("Username and Password is required", 401, RestErrorScope.CLIENT);
         }
 
         Instant timestamp = Instant.now();
